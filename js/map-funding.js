@@ -105,8 +105,8 @@ d3.csv("data/2018-usgs-water-science-centers-total-funding.csv", function(fundin
 					.attr("fill", "orange")
 					.attr("stroke-width", 3)
 				d3.select("#state_name").text(d.properties.name)
-				d3.select("#state_total").text("Total Funding: " + d3.format(".2f,%")(d.properties.wsc))
-				d3.select("#state_composite").text("composite: " + d3.format(".2f,'%'")(d.properties.composite))
+				d3.select("#state_total").text("Total Funding: " + d3.format(".2f,%")(d.properties.total))
+				d3.select("#state_composite").text("composite: " + d3.format(".2f,%")(d.properties.composite))
 				d3.select("#state_cost_center").text("cost_center: " + d3.format(".2f,%")(d.properties.cost_center))
 				d3.select("#state_facility").text("facility: " + d3.format(".2f,%")(d.properties.facility));
 			})
@@ -123,7 +123,7 @@ d3.csv("data/2018-usgs-water-science-centers-total-funding.csv", function(fundin
 		  				.style("left", (d3.event.pageX + 10) + "px")
 		  				.html("<h2>" + d.properties.name + "</h2>" + 
 		  					  "<br\>" +
-		  					  "<h3>WSC: " + d3.format("str,%")(d.properties.wsc) + "</h3>" + 
+		  					  "<h3>WSC: " + d3.format(".2f,%")(d.properties.total) + "</h3>" + 
 		  					  "<hr>" +
 		  					  "<h4>composite: " + d3.format(".2f,%")(d.properties.composite) + "</h4>" + 
 		  					  "<h4>cost_center: " + d3.format(".2f,%")(d.properties.cost_center) + "</h4>" +
