@@ -49,7 +49,7 @@ d3.csv("data/2018-usgs-water-science-centers-total-funding.csv", function(fundin
 	color.domain([
 		// d3.min(funding_data, function(d) {	return parseFloat(d.total); }),
 		20 , // $2 million
-		d3.max(funding_data, function(d) { return (d.wsc); })
+		d3.max(funding_data, function(d) { return (d.composite); })
 		]);
 
 	// load the data file; note path is relative from index.html
