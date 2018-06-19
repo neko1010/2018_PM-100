@@ -48,7 +48,7 @@ d3.csv("data/2018-usgs-water-science-centers-total-funding.csv", function(fundin
 	// set the input domain for the color scale
 	color.domain([
 		// d3.min(funding_data, function(d) {	return parseFloat(d.total); }),
-		2000000., // $2 million
+		0 , // $2 million
 		d3.max(funding_data, function(d) { return parseFloat(d.total); })
 		]);
 
@@ -105,10 +105,10 @@ d3.csv("data/2018-usgs-water-science-centers-total-funding.csv", function(fundin
 					.attr("fill", "orange")
 					.attr("stroke-width", 3)
 				d3.select("#state_name").text(d.properties.name)
-				d3.select("#state_total").text("Total Funding: " + d3.format("$,.2f")(d.properties.total))
-				d3.select("#state_composite").text("composite: " + d3.format("$,.2f")(d.properties.composite))
-				d3.select("#state_cost_center").text("cost_center: " + d3.format("$,.2f")(d.properties.cost_center))
-				d3.select("#state_facility").text("facility: " + d3.format("$,.2f")(d.properties.facility));
+				d3.select("#state_total").text("Total Funding: " + d3.format(".2f,%")(d.properties.total))
+				d3.select("#state_composite").text("composite: " + d3.format(".2f,%")(d.properties.composite))
+				d3.select("#state_cost_center").text("cost_center: " + d3.format(".2f,%")(d.properties.cost_center))
+				d3.select("#state_facility").text("facility: " + d3.format(".2f,%")(d.properties.facility));
 			})
 			.on("mouseout", function(d) {
 				d3.select(this)
@@ -123,11 +123,11 @@ d3.csv("data/2018-usgs-water-science-centers-total-funding.csv", function(fundin
 		  				.style("left", (d3.event.pageX + 10) + "px")
 		  				.html("<h2>" + d.properties.name + "</h2>" + 
 		  					  "<br\>" +
-		  					  "<h3>Total: " + d3.format("$,.2f")(d.properties.total) + "</h3>" + 
+		  					  "<h3>Total: " + d3.format(".2f,%")(d.properties.total) + "</h3>" + 
 		  					  "<hr>" +
-		  					  "<h4>composite: " + d3.format("$,.2f")(d.properties.composite) + "</h4>" + 
-		  					  "<h4>cost_center: " + d3.format("$,.2f")(d.properties.cost_center) + "</h4>" +
-		  					  "<h4>facility: " + d3.format("$,.2f")(d.properties.facility) + "</h4>");
+		  					  "<h4>composite: " + d3.format(".2f,%")(d.properties.composite) + "</h4>" + 
+		  					  "<h4>cost_center: " + d3.format(".2f,%")(d.properties.cost_center) + "</h4>" +
+		  					  "<h4>facility: " + d3.format(".2f,%")(d.properties.facility) + "</h4>");
 
 		  	})
 		  	.on("mousemove", function() {
@@ -142,7 +142,7 @@ d3.csv("data/2018-usgs-water-science-centers-total-funding.csv", function(fundin
 			.style("border-top-color", String)
 			.text(function(d) {
 				var r = color.invertExtent(d);
-				var format = d3.format("$,.2f");
+				var format = d3.format(".2f,%");
 				return format(+r[0]) + " - " + format(+r[1]);
 			});
 	});
