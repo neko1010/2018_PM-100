@@ -42,7 +42,7 @@ d3.csv("data/2018-usgs-water-science-centers-total-funding.csv", function(error,
 	}));
 
 	y_scale.domain([0, d3.max(data, function(d) {
-		return parseFloat(d.total);
+		return parseFloat(d.composite);
 	})]);
 
 	svg_bar_chart.append("g")
@@ -63,7 +63,7 @@ d3.csv("data/2018-usgs-water-science-centers-total-funding.csv", function(error,
 		.attr("y", 6)
 		.attr("dy", ".71em")
 		.style("text-anchor", "end")
-		.text("Total Funding")
+		.text("Total Overhead")
 
 	svg_bar_chart.selectAll(".bar")
 		.data(data)
@@ -75,16 +75,16 @@ d3.csv("data/2018-usgs-water-science-centers-total-funding.csv", function(error,
 		})
 		.attr("width", x_scale.rangeBand())
 		.attr("y", function(d) {
-			return y_scale(d.total);
+			return y_scale(d.composite);
 		})
 		.attr("height", function(d) {
-			return height_bar - y_scale(d.total);
+			return height_bar - y_scale(d.composite);
 		})
 		.on("mouseover", function(d) {
 			return tooltip_bar.style("visibility", "visible")
 		  		.style("top", (d3.event.pageY + 10) + "px")
 		  		.style("left", (d3.event.pageX + 10) + "px")
-				.text(d3.format("$,.2f")(d.total))
+				.text(d3.format("$,.2f")(d.composite))
 		})
 		.on("mouseout", function(d) {
 			return tooltip_bar.style("visibility", "hidden")
@@ -95,7 +95,7 @@ d3.csv("data/2018-usgs-water-science-centers-total-funding.csv", function(error,
 	function change() {
 		// if the value of the input checkbox is checked, then x_scale.domain is sorted by highest to lowest values, otherwise it is sorted alphabetically as original data
 		var x_scale_0 = x_scale.domain(data.sort(this.checked
-			? function(a, b) { return b.total - a.total; }
+			? function(a, b) { return b.composite - a.composite; }
 			: function(a, b) { return d3.ascending(a.state, b.state); })
 			.map(function(d) {return d.state;} ))
 			.copy();

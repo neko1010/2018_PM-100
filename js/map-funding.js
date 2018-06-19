@@ -65,9 +65,9 @@ d3.csv("data/2018-usgs-water-science-centers-total-funding.csv", function(fundin
 
 			// get the data values and convert from string to float
 			var funding_data_value = parseFloat(funding_data[i].total);
-			var appropriated_data_value = parseFloat(funding_data[i].appropriated);
-			var other_data_value = parseFloat(funding_data[i].other);
-			var reimbursable_data_value = parseFloat(funding_data[i].reimbursable);
+			var composite_data_value = parseFloat(funding_data[i].composite);
+			var cost_center_data_value = parseFloat(funding_data[i].cost_center);
+			var facility_data_value = parseFloat(funding_data[i].facility);
 
 			// find the corresponding state inside the geojson
 			for (var j = 0; j < json.features.length; j++) {
@@ -79,9 +79,9 @@ d3.csv("data/2018-usgs-water-science-centers-total-funding.csv", function(fundin
 
 					// copy the ag data value into the the json
 					json.features[j].properties.total = funding_data_value;
-					json.features[j].properties.appropriated = appropriated_data_value;
-					json.features[j].properties.other = other_data_value;
-					json.features[j].properties.reimbursable = reimbursable_data_value;					
+					json.features[j].properties.composite = composite_data_value;
+					json.features[j].properties.cost_center = cost_center_data_value;
+					json.features[j].properties.facility = facility_data_value;					
 
 					// stop looking through the geojson
 					break;
@@ -106,9 +106,9 @@ d3.csv("data/2018-usgs-water-science-centers-total-funding.csv", function(fundin
 					.attr("stroke-width", 3)
 				d3.select("#state_name").text(d.properties.name)
 				d3.select("#state_total").text("Total Funding: " + d3.format("$,.2f")(d.properties.total))
-				d3.select("#state_appropriated").text("Appropriated: " + d3.format("$,.2f")(d.properties.appropriated))
-				d3.select("#state_other").text("Other: " + d3.format("$,.2f")(d.properties.other))
-				d3.select("#state_reimbursable").text("Reimbursable: " + d3.format("$,.2f")(d.properties.reimbursable));
+				d3.select("#state_composite").text("composite: " + d3.format("$,.2f")(d.properties.composite))
+				d3.select("#state_cost_center").text("cost_center: " + d3.format("$,.2f")(d.properties.cost_center))
+				d3.select("#state_facility").text("facility: " + d3.format("$,.2f")(d.properties.facility));
 			})
 			.on("mouseout", function(d) {
 				d3.select(this)
@@ -125,9 +125,9 @@ d3.csv("data/2018-usgs-water-science-centers-total-funding.csv", function(fundin
 		  					  "<br\>" +
 		  					  "<h3>Total: " + d3.format("$,.2f")(d.properties.total) + "</h3>" + 
 		  					  "<hr>" +
-		  					  "<h4>Appropriated: " + d3.format("$,.2f")(d.properties.appropriated) + "</h4>" + 
-		  					  "<h4>Other: " + d3.format("$,.2f")(d.properties.other) + "</h4>" +
-		  					  "<h4>Reimbursable: " + d3.format("$,.2f")(d.properties.reimbursable) + "</h4>");
+		  					  "<h4>composite: " + d3.format("$,.2f")(d.properties.composite) + "</h4>" + 
+		  					  "<h4>cost_center: " + d3.format("$,.2f")(d.properties.cost_center) + "</h4>" +
+		  					  "<h4>facility: " + d3.format("$,.2f")(d.properties.facility) + "</h4>");
 
 		  	})
 		  	.on("mousemove", function() {
