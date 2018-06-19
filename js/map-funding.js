@@ -48,7 +48,7 @@ d3.csv("data/2018-usgs-water-science-centers-total-funding.csv", function(fundin
 	// set the input domain for the color scale
 	color.domain([
 		// d3.min(funding_data, function(d) {	return parseFloat(d.total); }),
-		20 , // $2 million
+		50 , // 56% is lowest (WI)
 		d3.max(funding_data, function(d) { return (d.composite); })
 		]);
 
