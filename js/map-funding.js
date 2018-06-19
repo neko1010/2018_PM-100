@@ -123,7 +123,7 @@ d3.csv("data/2018-usgs-water-science-centers-total-funding.csv", function(fundin
 		  				.style("left", (d3.event.pageX + 10) + "px")
 		  				.html("<h2>" + d.properties.name + "</h2>" + 
 		  					  "<br\>" +
-		  					  "<h3>WSC: " + d3.format(".2f,%")(d.properties.total) + "</h3>" + 
+		  					  "<h3>WSC: " + (d.properties.wsc) + "</h3>" + 
 		  					  "<hr>" +
 		  					  "<h4>Composite: " + d3.format(".2f,%")(d.properties.composite) + "</h4>" + 
 		  					  "<h4>Cost Center: " + d3.format(".2f,%")(d.properties.cost_center) + "</h4>" +
