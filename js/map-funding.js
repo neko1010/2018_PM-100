@@ -33,7 +33,7 @@ var legend = d3.select("#legend")
 // function to calculate a color based on the ag productivity from data/us-ag-productivity-2004.csv file
 function calculate_color(d) {
 
-	var value = d.properties.total;
+	var value = d.properties.composite;
 
 	if (value) {
 		return color(value);
@@ -49,7 +49,7 @@ d3.csv("data/2018-usgs-water-science-centers-total-funding.csv", function(fundin
 	color.domain([
 		// d3.min(funding_data, function(d) {	return parseFloat(d.total); }),
 		0 , // $2 million
-		d3.max(funding_data, function(d) { return parseFloat(d.total); })
+		d3.max(funding_data, function(d) { return parseString(d.wsc); })
 		]);
 
 	// load the data file; note path is relative from index.html
@@ -64,7 +64,7 @@ d3.csv("data/2018-usgs-water-science-centers-total-funding.csv", function(fundin
 			var funding_data_state = funding_data[i].state;
 
 			// get the data values and convert from string to float
-			var funding_data_value = parseFloat(funding_data[i].total);
+			var wsc_value = parseFloat(funding_data[i].wsc);
 			var composite_data_value = parseFloat(funding_data[i].composite);
 			var cost_center_data_value = parseFloat(funding_data[i].cost_center);
 			var facility_data_value = parseFloat(funding_data[i].facility);
@@ -123,7 +123,7 @@ d3.csv("data/2018-usgs-water-science-centers-total-funding.csv", function(fundin
 		  				.style("left", (d3.event.pageX + 10) + "px")
 		  				.html("<h2>" + d.properties.name + "</h2>" + 
 		  					  "<br\>" +
-		  					  "<h3>Total: " + d3.format(".2f,%")(d.properties.total) + "</h3>" + 
+		  					  "<h3>WSC: " + d3.format(".2f,%")(d.properties.wsc) + "</h3>" + 
 		  					  "<hr>" +
 		  					  "<h4>composite: " + d3.format(".2f,%")(d.properties.composite) + "</h4>" + 
 		  					  "<h4>cost_center: " + d3.format(".2f,%")(d.properties.cost_center) + "</h4>" +
